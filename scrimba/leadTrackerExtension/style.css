@@ -1,0 +1,31 @@
+body {
+   max-width: 600px;
+   min-width: 400px;
+}
+#input-el {
+   display: block;
+   width: 100%;
+   margin-bottom: 5px;
+   font-size: 20px;
+   border: 1px solid #5f9341;
+   padding: 5px;
+   box-sizing: border-box;
+}
+#input-el:focus {
+   border: 1px solid #5f9341;
+   outline: none;
+}
+button {
+   border: none;
+   background: #5f9341;
+   color: #ffffff;
+   font-size: 16px;
+   font-weight: bold;
+   padding: 10px 20px;
+   border: 1px solid  #5f9341;
+   text-transform: uppercase;
+}
+#delBtn-el {
+   background: #ffffff;
+   color: #5f9341;
+}

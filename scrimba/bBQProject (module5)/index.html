@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>BBQ project</title>
+   <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <div class="flex">
+      <section class="introduction">
+         <div class="container">
+            <p class="introduction__name">Mouthwateringly delicious</p>
+            <h1>Learn how to make<br> <strong>the best BBQ ribs</strong><br> in town</h1>
+            <p class="introduction__invitation"><a class="introduction__invitation-a" href="#">join us for this live webinar</a></p>   
+         </div>
+      </section>
+      <section class="register">
+         <div id="mainContent" class="container">
+            <h2>Become a BBQ master!</h2>
+            <p class="register__subtitle">register today</p>
+            <p class="register__text">BBQ isn't just standing in front of your grill with it on full blast and hoping for the best. It's an art! One way to speed up the process is to learn from the best. You can do just that by signing up for this free webinar!</p>
+            <form id="emailCollector" action="#" method="POST">
+               <input name="firstName" class="register__name" type="text" placeholder="first name" required>
+               <input name="emailAddress" class="register__email" type="email" placeholder="email" required>
+               <input class="register__btn" type="submit" value="register">
+            </form>
+            <p class="fine-print">We'll never share your information<br>without your permission</p>   
+         </div>
+      </section>   
+   </div>
+
+   <!-- begin of script -->
+   <script>   
+      "use strict"
+      
+      document.getElementById('emailCollector').addEventListener('submit', event => {
+         event.preventDefault();
+
+         let ourFormData = new FormData(event.target);
+         let userFirstName = ourFormData.get('firstName');
+         let userEmailAddress = ourFormData.get('emailAddress');
+
+         let updatedContent = `
+            <h2>Congratulations, ${userFirstName}!</h2>
+            <p>You're on your way to becoming a BBQ Master!</p>
+            <p class="fine-print">You will get weekly BBQ tips sent to: ${userEmailAddress}</p>
+         `
+         const mainContent = document.querySelector('#mainContent');
+         mainContent.innerHTML = updatedContent;
+      })
+   </script>
+</body>
+</html>

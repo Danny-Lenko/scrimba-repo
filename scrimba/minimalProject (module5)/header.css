@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+
+html {
+   font-size: 10px;
+}
+
+body {
+   font-family: 'Ubuntu', sans-serif;
+   font-size: 1.8rem;
+   color: #707070;
+   line-height: 1.6;
+}
+
+h1 {
+   font-family: 'Lora', serif;
+   font-weight: 400;
+   font-size: 3.3rem;
+   color: #143774;
+}
+
+body,
+h1,
+.subtitle,
+header ul {
+   margin: 0;
+}
+
+.container {
+   width: 90%;
+   max-width: 1006px;
+   margin: 0 auto;
+}
+.header-wrapper {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+header {
+   background: #F8F8F8;
+   padding: 4em 0;
+}
+
+.subtitle {
+   text-transform: uppercase;
+   font-size: 1.2rem;
+   font-weight: bold;
+   color: #1792D2;
+   letter-spacing: 2.3px;
+}
+
+header ul {
+   padding: 0;
+   font-weight: bold;
+   text-transform: uppercase;
+   font-size: 1.6rem;
+   letter-spacing: 3.2px;
+}
+header li {
+   list-style: none;
+   margin-left: 35px;
+}
+header a {
+   color: #707070;
+   text-decoration: none;
+   padding: .25em 0;
+}
+header a:hover,
+header a:focus {
+   color: #1792D2;
+}
+
+.current-page,
+.current-page:hover {
+   color: inherit;
+   border-bottom: 1.5px solid #707070;
+}
+@media (max-width: 860px) {
+   header {
+      padding: 2em 0;
+      text-align: center;
+   }
+   .header-wrapper {
+      flex-direction: column;
+   }
+   header nav {
+      margin-top: 1.2em;
+   }
+   header li {
+      margin: 1em 0;
+   }
+}
+
+/* ------End of <header>------- */
+
+
+
+
+
