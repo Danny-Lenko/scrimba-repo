@@ -29,7 +29,7 @@
 
 ## Next Level JavaScript
 
-1) Template literals and multilines text;
+1) Template literals and multilines text:
 
 ```js
 let word1 = 'Dylan';
@@ -40,6 +40,25 @@ ${word2}
 `;
 document.getElementById('example').innerText = example;
 ```
+
+2) Destructure objects:
+
+```js
+   const player = {
+      name: 'Lebron James',
+      club: 'LA Lakers',
+      address: {
+         city: 'Los Angeles'
+      }
+   };
+   const { name, club, address: { city } } = player;
+   console.log(`${name} lives in ${city}`);
+```
+
+
+
+
+
 
 ### Continued development
 
