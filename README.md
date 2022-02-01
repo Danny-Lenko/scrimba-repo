@@ -27,17 +27,18 @@
 
 ### What I learned
 
-1) the Utility Classes "gap" property to use between flex and grid elements (html customizable variable)
+## Next Level JavaScript
 
-```css
-.flex {
-   display: flex;
-   gap: var(--gap, 1.6rem);
-}
-.grid {
-   display: grid;
-   gap: var(--gap, 1.6rem);
-}
+1) Template literals and multilines text;
+
+```js
+let word1 = 'Dylan';
+let word2 = 'Israel';
+
+let example = `${word1}
+${word2}
+`;
+document.getElementById('example').innerText = example;
 ```
 
 ### Continued development
