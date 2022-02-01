@@ -55,6 +55,28 @@ document.getElementById('example').innerText = example;
    console.log(`${name} lives in ${city}`);
 ```
 
+3) Destucture an array:
+
+```js
+let [firstName, middleName, lastName] = ['Dylan', 'Coding God', 'Israel'];
+
+lastName = 'Clements';
+
+console.log(firstName + " " + lastName);
+```
+
+4) Object literals:
+
+```js
+function addressMaker(city, state) {
+    const newAdress = {city, state};
+    
+    console.log(newAdress);
+}
+
+addressMaker('Austin', 'Texas');
+```
+
 
 
 
