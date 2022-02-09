@@ -19,10 +19,16 @@
       //   return str;
       // }
 
+      // function encloseInBrackets(str) {
+      //    str = ['(',...str,')'].join('');
+      //    return str;
+      // }
+
       function encloseInBrackets(str) {
-         str = ['(',...str,')'].join('');
+         str = '('.concat(str, ')');
          return str;
       }
+
 
       console.log(encloseInBrackets('Hello World'));
    </script>
