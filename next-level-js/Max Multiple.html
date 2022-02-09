@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+      function maxMultiple(divisor, bound) {
+         let multiple;
+         do {
+            multiple = bound % divisor;
+            bound--;
+         } while(multiple > 0);
+         return bound + 1;
+         }
+      console.log(maxMultiple(3, 20));
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
