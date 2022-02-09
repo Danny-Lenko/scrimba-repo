@@ -6,14 +6,28 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Gold Code</title>
    <script>
-      function palindrome(str) {
-         str = str.toLowerCase();
-         const strReverse = str.toLowerCase().split('').reverse().join('');
+      // function palindrome(str) {
+      //    str = str.toLowerCase();
+      //    const strReverse = str.split('').reverse().join('');
 
-         return (str === strReverse) ? true : false;
+      //    return str === strReverse;
+      //    }
+
+      // palindrome("eye");
+
+
+      function caseInsensitivePalindrome(str) {
+         const caselessStr = str.toLowerCase();
+         
+         let reversedCaselessStr = '';
+         
+         for (let i = caselessStr.length - 1; i >= 0; i--) {
+            reversedCaselessStr += caselessStr[i];
          }
+         
+         return caselessStr === reversedCaselessStr;
+      }
 
-      palindrome("eye");   
    </script>
 </head>
 <body>
