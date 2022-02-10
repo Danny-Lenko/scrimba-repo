@@ -82,11 +82,31 @@ const model = {
     pacmanIndex: 490,
 
     movePacMan() {
-        this.squares[this.pacmanIndex].classList.remove('pacman');
-        this.pacmanIndex += controller.direction; 
+        if (this.checkWalls()) {
+            this.squares[this.pacmanIndex].classList.remove('pacman');
+            this.pacmanIndex += controller.direction;     
+        }
     
-        view.renderGrid();
-    }
+        view.renderPacman();
+        view.renderScore();
+        console.log(this.pacmanIndex);
+    },
+
+    checkWalls() {
+        // tunnel walkthrough
+        const nextStep = this.pacmanIndex + controller.direction;
+        this.pacmanIndex = (nextStep === 391) ? 363 
+            : (nextStep === 364) ? 392 : this.pacmanIndex;
+        this.squares[390].classList.remove('pacman');
+        this.squares[365].classList.remove('pacman');
+    
+        return (this.squares[nextStep].classList.contains('wall')) ? false 
+            : true
+    },
+
+    // checkWalls() {
+    //     if ()
+    // }
 
 
 
