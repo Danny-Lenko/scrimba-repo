@@ -103,6 +103,9 @@ function control(e) {
             pacmanCurrentIndex % width !==0
             ) 
             pacmanCurrentIndex -=1
+            if (pacmanCurrentIndex === 364) {
+                pacmanCurrentIndex = 391
+            }
         break
         case 39:
         console.log('pressed right')
@@ -112,6 +115,10 @@ function control(e) {
             pacmanCurrentIndex % width < width -1
             ) 
             pacmanCurrentIndex +=1
+                if (pacmanCurrentIndex === 391) {
+                pacmanCurrentIndex = 364
+            }
+
         break
     }
     squares[pacmanCurrentIndex].classList.add('pacman')
