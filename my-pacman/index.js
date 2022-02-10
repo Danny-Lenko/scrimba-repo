@@ -1,6 +1,5 @@
 "use strict"
 
-const scoreDisplay = document.getElementById('score')
 
 // 0 - pacdots
 // 1 - wall
@@ -10,7 +9,7 @@ const scoreDisplay = document.getElementById('score')
 
 window.onload = () => {
     view.renderGrid();
-
+    document.addEventListener('keyup', controller.control);
 }
 
 const view = {
@@ -57,8 +56,19 @@ const view = {
                 : (item === 0) ? square.classList.add('pac-dot') 
                 : (item === 3) ? square.classList.add('power-pellet')
                 : 0;
-        })
+        });
 
+        this.renderScore();
+        this.renderPacman();
+    },
+
+    renderPacman() {
+        model.squares[model.pacmanIndex].classList.add('pacman');
+    },
+
+    renderScore() {
+        const scoreDisplay = document.getElementById('score')
+        scoreDisplay.textContent = ' ' + controller.score;
     }
 
 
@@ -69,8 +79,14 @@ const model = {
 
     squares: [],
     width: 28,
+    pacmanIndex: 490,
 
-
+    movePacMan() {
+        this.squares[this.pacmanIndex].classList.remove('pacman');
+        this.pacmanIndex += controller.direction; 
+    
+        view.renderGrid();
+    }
 
 
 
@@ -79,6 +95,29 @@ const model = {
 const controller = {
 
     score: 0,
+    direction: 0,
+
+    control(e) {
+        switch (e.key) {
+            case "ArrowLeft":
+                controller.direction = -1
+                console.log('Left pressed')
+                break;
+            case "ArrowRight":
+                controller.direction = 1
+                console.log('Right pressed')
+                break;
+            case "ArrowUp":
+                controller.direction = -model.width
+                console.log('Up pressed')
+                break;
+            case "ArrowDown":
+                controller.direction = model.width
+                console.log('Down pressed')
+                break;
+        }
+        model.movePacMan();
+    }
 
 
 };
