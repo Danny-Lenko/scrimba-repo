@@ -1,6 +1,5 @@
 "use strict"
 
-
 // 0 - pacdots
 // 1 - wall
 // 2 - ghost lair
@@ -71,9 +70,9 @@ const view = {
         scoreDisplay.textContent = ' ' + controller.score;
     }
 
-
 };
 
+//--------------------- The model ------------------------
 
 const model = {
 
@@ -87,9 +86,9 @@ const model = {
             this.pacmanIndex += controller.direction;     
         }
     
+        this.eatDots();
         view.renderPacman();
         view.renderScore();
-        console.log(this.pacmanIndex);
     },
 
     checkWalls() {
@@ -104,13 +103,22 @@ const model = {
             : true
     },
 
-    // checkWalls() {
-    //     if ()
-    // }
+    eatDots() {
+        if (this.squares[this.pacmanIndex].classList.contains('pac-dot')) {
+            this.squares[this.pacmanIndex].classList.remove('pac-dot');
+            controller.score++;
+        }
+        // eat big dot
+        if (this.squares[this.pacmanIndex].classList.contains('power-pellet')) {
+            this.squares[this.pacmanIndex].classList.remove('power-pellet');
+            controller.score += 10;
+        }
 
-
+    }
 
 };
+
+// --------------------- The controller -------------------------
 
 const controller = {
 
@@ -121,25 +129,19 @@ const controller = {
         switch (e.key) {
             case "ArrowLeft":
                 controller.direction = -1
-                console.log('Left pressed')
                 break;
             case "ArrowRight":
                 controller.direction = 1
-                console.log('Right pressed')
                 break;
             case "ArrowUp":
                 controller.direction = -model.width
-                console.log('Up pressed')
                 break;
             case "ArrowDown":
                 controller.direction = model.width
-                console.log('Down pressed')
                 break;
         }
         model.movePacMan();
     }
 
-
 };
 
-console.log(model.squares)
