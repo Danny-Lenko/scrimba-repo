@@ -114,8 +114,6 @@ const model = {
         this.eatScaredGhost();
         view.renderPacman();
         view.renderScore(` ${controller.score}`);
-
-        // console.log(this.ghosts[1].isScared);
     },
 
     checkWalls() {
@@ -131,7 +129,6 @@ const model = {
     },
 
     eatDots() {
-        let timeoutID = null;
         if (this.squares[this.pacmanIndex].classList.contains('pac-dot')) {
             this.squares[this.pacmanIndex].classList.remove('pac-dot');
             controller.score++;
@@ -187,12 +184,15 @@ const model = {
 
     eatScaredGhost() {
         if (this.squares[this.pacmanIndex].classList.contains('scared-ghost')) {
-            let ghost = this.ghosts.find(ghost => ghost.currentIndex === this.pacmanIndex);
-            this.squares[this.pacmanIndex].classList.remove('ghost', 'scared-ghost', ghost.className);
+
+            let ghost = this.ghosts.find(ghost => 
+                    ghost.currentIndex === this.pacmanIndex);
+            this.squares[this.pacmanIndex].classList.
+                remove('ghost', 'scared-ghost', ghost.className);
             ghost.currentIndex = ghost.index;
             ghost.isScared = false;
+            controller.score += 100;
 
-            console.log(ghost);
         }
     }
 
