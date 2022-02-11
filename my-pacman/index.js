@@ -7,10 +7,9 @@
 // 4 - empty
 
 window.onload = () => {
-    let intervalID;
     view.renderGrid();
     document.addEventListener('keyup', controller.control);
-
+    model.ghosts.forEach(ghost => model.moveGhost(ghost));
 }
 
 class Ghost {
@@ -20,6 +19,7 @@ class Ghost {
         this.index = index;
         this.intervalID = null;
         this.currentIndex = index;
+        this.isScared = false;
     }
 };
 
@@ -69,7 +69,7 @@ const view = {
                 : 0;
         });
 
-        this.renderScore();
+        this.renderScore(` ${controller.score}`);
         this.renderPacman();
         this.renderGhosts();
     },
@@ -78,13 +78,14 @@ const view = {
         model.squares[model.pacmanIndex].classList.add('pacman');
     },
 
-    renderScore() {
+    renderScore(content) {
         const scoreDisplay = document.getElementById('score')
-        scoreDisplay.textContent = ' ' + controller.score;
+        scoreDisplay.textContent = content;
     },
 
     renderGhosts() {
-        model.ghosts.forEach(ghost => model.squares[ghost.index].classList.add(ghost.className, 'ghost'));
+        model.ghosts.forEach(ghost => model.squares[ghost.currentIndex]
+            .classList.add(ghost.className, 'ghost'));
     }
 
 };
@@ -111,7 +112,9 @@ const model = {
     
         this.eatDots();
         view.renderPacman();
-        view.renderScore();
+        view.renderScore(` ${controller.score}`);
+
+        console.log(this.ghosts[1].isScared);
     },
 
     checkWalls() {
@@ -127,6 +130,7 @@ const model = {
     },
 
     eatDots() {
+        let timeoutID = null;
         if (this.squares[this.pacmanIndex].classList.contains('pac-dot')) {
             this.squares[this.pacmanIndex].classList.remove('pac-dot');
             controller.score++;
@@ -135,6 +139,8 @@ const model = {
         if (this.squares[this.pacmanIndex].classList.contains('power-pellet')) {
             this.squares[this.pacmanIndex].classList.remove('power-pellet');
             controller.score += 10;
+            this.ghosts.forEach(ghost => ghost.isScared = true);
+            setTimeout(this.unScareGhosts, 10000);
         }
 
     },
@@ -147,24 +153,40 @@ const model = {
 
                 if ( this.checkWallsGhosts(ghost, ghostDirection) ) {
 
-                    this.squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost');
+                    this.squares[ghost.currentIndex]
+                        .classList.remove(ghost.className, 'ghost', 'scared-ghost');
                     ghost.currentIndex += ghostDirection;
-                    this.squares[ghost.currentIndex].classList.add(ghost.className, 'ghost');
+                    view.renderGhosts();
 
                 } else ghostDirection = directions[Math.floor(Math.random() * 4)];
 
-                
+                if (ghost.isScared) {
+                    this.squares[ghost.currentIndex].classList.add('scared-ghost');
+                }
 
+                controller.gameOverCheck();
             }, ghost.speed);    
     },
 
-    // also checks if no other ghosts on the way
     checkWallsGhosts(ghost, ghostDirection) {
+        // also checks if no other ghosts on the way
         return (
-            this.squares[ghost.currentIndex + ghostDirection].classList.contains('wall')
-            || this.squares[ghost.currentIndex + ghostDirection].classList.contains('ghost')
+            this.squares[ghost.currentIndex + ghostDirection]
+                .classList.contains('wall')
+            || this.squares[ghost.currentIndex + ghostDirection]
+                .classList.contains('ghost')
         ) ? false : true;
-    }
+    },
+
+    unScareGhosts() {
+        model.ghosts.forEach(ghost => {
+            ghost.isScared = false;
+        });
+    },
+
+    // eatScaredGhost() {
+
+    // }
 
 };
 
@@ -177,25 +199,38 @@ const controller = {
 
     control(e) {
         switch (e.key) {
-            case "ArrowLeft":
-                controller.direction = -1
+            case "ArrowLeft": controller.direction = -1
                 break;
-            case "ArrowRight":
-                controller.direction = 1
+            case "ArrowRight": controller.direction = 1
                 break;
-            case "ArrowUp":
-                controller.direction = -model.width
+            case "ArrowUp": controller.direction = -model.width
                 break;
-            case "ArrowDown":
-                controller.direction = model.width
+            case "ArrowDown": controller.direction = model.width
                 break;
         }
         model.movePacMan();
-    }
+    },
+
+    gameOverCheck() {
+
+        if (model.squares[model.pacmanIndex].classList.contains('ghost') 
+            && !model.squares[model.pacmanIndex].classList.contains('scared-ghost')) {
+
+            model.ghosts.forEach(ghost => clearInterval(ghost.intervalID));
+            document.removeEventListener('keyup', this.control);
+            view.renderScore(` ${controller.score} - You LOSE`);
+
+        } else if (this.score >= 274) {
+
+            model.ghosts.forEach(ghost => clearInterval(ghost.intervalID));
+            document.removeEventListener('keyup', this.control);
+            view.renderScore(` ${controller.score} - You WIN`);
+
+        }
+    },
 
 };
 
-model.ghosts.forEach(ghost => model.moveGhost(ghost));
 
 
 
