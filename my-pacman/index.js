@@ -123,8 +123,10 @@ const model = {
             : (nextStep === 364) ? 392 : this.pacmanIndex;
         this.squares[390].classList.remove('pacman');
         this.squares[365].classList.remove('pacman');
-    
+        
+        console.log(this.pacmanIndex);
         return (this.squares[nextStep].classList.contains('wall')) ? false 
+            : (nextStep === 321 || nextStep === 322) ? false
             : true
     },
 
