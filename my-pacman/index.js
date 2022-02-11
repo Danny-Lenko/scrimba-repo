@@ -111,10 +111,11 @@ const model = {
         }
     
         this.eatDots();
+        this.eatScaredGhost();
         view.renderPacman();
         view.renderScore(` ${controller.score}`);
 
-        console.log(this.ghosts[1].isScared);
+        // console.log(this.ghosts[1].isScared);
     },
 
     checkWalls() {
@@ -184,9 +185,16 @@ const model = {
         });
     },
 
-    // eatScaredGhost() {
+    eatScaredGhost() {
+        if (this.squares[this.pacmanIndex].classList.contains('scared-ghost')) {
+            let ghost = this.ghosts.find(ghost => ghost.currentIndex === this.pacmanIndex);
+            this.squares[this.pacmanIndex].classList.remove('ghost', 'scared-ghost', ghost.className);
+            ghost.currentIndex = ghost.index;
+            ghost.isScared = false;
 
-    // }
+            console.log(ghost);
+        }
+    }
 
 };
 
