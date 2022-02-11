@@ -10,8 +10,13 @@ window.onload = () => {
     view.renderGrid();
     document.addEventListener('keyup', controller.control);
     model.ghosts.forEach(ghost => model.moveGhost(ghost));
-}
 
+    // buttons
+    document.querySelector('#restartBtn').addEventListener('click', controller.restart);
+    document.querySelectorAll('[type=button]').forEach(btn => {
+        btn.addEventListener('click', controller.setMode);
+    });
+}
 class Ghost {
     constructor(className, speed, index) {
         this.className = className;
@@ -124,7 +129,6 @@ const model = {
         this.squares[390].classList.remove('pacman');
         this.squares[365].classList.remove('pacman');
         
-        console.log(this.pacmanIndex);
         return (this.squares[nextStep].classList.contains('wall')) ? false 
             : (nextStep === 321 || nextStep === 322) ? false
             : true
@@ -238,6 +242,40 @@ const controller = {
 
         }
     },
+
+    restart() {
+        controller.score = 0;
+        view.renderScore(` ${controller.score}`);
+
+        model.ghosts.forEach(ghost => {
+            model.squares[ghost.currentIndex]
+                .classList.remove(ghost.className, 'ghost', 'scared-ghost');
+            ghost.intervalID = null;
+            ghost.isScared = false;
+        })
+        model.squares[model.pacmanIndex].classList.remove('pacman');
+
+
+        model.pacmanIndex = 490;
+        model.ghosts = [
+            new Ghost('blinky', 250, 348),
+            new Ghost('pinky', 400, 376),
+            new Ghost('inky', 300, 351),
+            new Ghost('clyde', 500, 379)
+        ];
+
+        view.renderPacman();
+        model.ghosts.forEach(ghost => model.moveGhost(ghost));
+        document.addEventListener('keyup', controller.control);
+
+        view.layout.forEach((item, index) => {
+            return (item === 1) ? model.squares[index].classList.add('wall') 
+            : (item === 0) ? model.squares[index].classList.add('pac-dot') 
+            : (item === 3) ? model.squares[index].classList.add('power-pellet')
+            : 0;    
+        })
+    
+    }
 
 };
 
