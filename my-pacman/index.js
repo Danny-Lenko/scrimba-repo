@@ -11,6 +11,14 @@ window.onload = () => {
     document.addEventListener('keyup', controller.control);
 }
 
+class Ghost {
+    constructor(className, speed, index) {
+        this.className = className;
+        this.speed = speed;
+        this.index = index;     
+    }
+};
+
 const view = {
     layout: [
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -59,6 +67,7 @@ const view = {
 
         this.renderScore();
         this.renderPacman();
+        this.renderGhosts();
     },
 
     renderPacman() {
@@ -68,6 +77,10 @@ const view = {
     renderScore() {
         const scoreDisplay = document.getElementById('score')
         scoreDisplay.textContent = ' ' + controller.score;
+    },
+
+    renderGhosts() {
+        model.ghosts.forEach(ghost => model.squares[ghost.index].classList.add(ghost.className));
     }
 
 };
@@ -79,6 +92,12 @@ const model = {
     squares: [],
     width: 28,
     pacmanIndex: 490,
+    ghosts: [
+        new Ghost('blinky', 250, 348),
+        new Ghost('pinky', 400, 376),
+        new Ghost('inky', 300, 351),
+        new Ghost('clyde', 500, 379)
+    ],
 
     movePacMan() {
         if (this.checkWalls()) {
@@ -114,6 +133,15 @@ const model = {
             controller.score += 10;
         }
 
+    },
+
+    moveGhosts() {
+        const directions = [1, -1, model.width, -model.width];
+
+        this.ghosts.forEach(ghost => {
+            ghost.index += directions[Math.floor(Math.random() * 4)];
+        })
+        // view.renderGhosts();
     }
 
 };
@@ -144,4 +172,8 @@ const controller = {
     }
 
 };
+
+model.moveGhosts();
+model.moveGhosts();
+model.moveGhosts();
 
