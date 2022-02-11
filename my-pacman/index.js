@@ -7,15 +7,19 @@
 // 4 - empty
 
 window.onload = () => {
+    let intervalID;
     view.renderGrid();
     document.addEventListener('keyup', controller.control);
+
 }
 
 class Ghost {
     constructor(className, speed, index) {
         this.className = className;
         this.speed = speed;
-        this.index = index;     
+        this.index = index;
+        this.intervalID = null;
+        this.currentIndex = index;
     }
 };
 
@@ -80,7 +84,7 @@ const view = {
     },
 
     renderGhosts() {
-        model.ghosts.forEach(ghost => model.squares[ghost.index].classList.add(ghost.className));
+        model.ghosts.forEach(ghost => model.squares[ghost.index].classList.add(ghost.className, 'ghost'));
     }
 
 };
@@ -135,13 +139,31 @@ const model = {
 
     },
 
-    moveGhosts() {
+    moveGhost(ghost) {
         const directions = [1, -1, model.width, -model.width];
+        let ghostDirection = directions[Math.floor(Math.random() * 4)];
 
-        this.ghosts.forEach(ghost => {
-            ghost.index += directions[Math.floor(Math.random() * 4)];
-        })
-        // view.renderGhosts();
+            ghost.intervalID = setInterval(() => {
+
+                if ( this.checkWallsGhosts(ghost, ghostDirection) ) {
+
+                    this.squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost');
+                    ghost.currentIndex += ghostDirection;
+                    this.squares[ghost.currentIndex].classList.add(ghost.className, 'ghost');
+
+                } else ghostDirection = directions[Math.floor(Math.random() * 4)];
+
+                
+
+            }, ghost.speed);    
+    },
+
+    // also checks if no other ghosts on the way
+    checkWallsGhosts(ghost, ghostDirection) {
+        return (
+            this.squares[ghost.currentIndex + ghostDirection].classList.contains('wall')
+            || this.squares[ghost.currentIndex + ghostDirection].classList.contains('ghost')
+        ) ? false : true;
     }
 
 };
@@ -173,7 +195,9 @@ const controller = {
 
 };
 
-model.moveGhosts();
-model.moveGhosts();
-model.moveGhosts();
+model.ghosts.forEach(ghost => model.moveGhost(ghost));
+
+
+
+
 
