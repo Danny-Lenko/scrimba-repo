@@ -1,11 +1,5 @@
 "use strict"
 
-// 0 - pacdots
-// 1 - wall
-// 2 - ghost lair
-// 3 - powerpellets
-// 4 - empty
-
 window.onload = () => {
     const modeBtns = document.querySelectorAll('[type=button]');
 
@@ -133,7 +127,6 @@ const model = {
 
     movePacMan() {
         this.checkMode();
-
 
         if (this.checkWalls()) {
             this.squares[this.pacmanIndex].classList.remove('pacman');
@@ -316,6 +309,7 @@ const controller = {
     },
 
     restart() {
+        
         controller.score = 0;
         view.renderScore(` ${controller.score}`);
 
