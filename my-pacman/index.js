@@ -21,29 +21,27 @@ window.onload = () => {
             if (!btn.classList.contains('active')) {
 
                 if (btn.id === 'easyBtn') {
+                    controller.setMode(274, false, false);
+                    // controller.scoreToWin = 274;
+                    // controller.mediumMode = false;
+                    // controller.hardMode = false;
+                    // controller.restart();
 
-                    controller.scoreToWin = 274;
-                    controller.mediumMode = false;
-                    controller.hardMode = false;
-
-                    controller.restart();
-                    console.log('easy');
                 } else if (btn.id === 'mediumBtn') {
+                    controller.setMode(548, true, false);
+                    // controller.scoreToWin = 548;
+                    // controller.mediumMode = true;
+                    // controller.hardMode = false;
+                    // controller.restart();
 
-                    controller.scoreToWin = 548;
-                    controller.mediumMode = true;
-                    controller.hardMode = false;
-
-                    console.log('medium');
                 } else if (btn.id === 'hardBtn') {
+                    controller.setMode(822, false, true);
+                    // controller.scoreToWin = 822;
+                    // controller.mediumMode = false;
+                    // controller.hardMode = true;
+                    // controller.restart();
 
-                    controller.scoreToWin = 822;
-                    controller.mediumMode = false;
-                    controller.hardMode = true;
-
-                    console.log('hard');
                 }
-
             } else {
                 return false;
             }
@@ -301,8 +299,11 @@ const controller = {
         }
     },
 
-    setMode() {
-
+    setMode(winState, medium, hard) {
+        this.scoreToWin = winState;
+        this.mediumMode = medium;
+        this.hardMode = hard;
+        controller.restart();
     },
 
     restart() {
@@ -317,7 +318,7 @@ const controller = {
         })
         model.squares[model.pacmanIndex].classList.remove('pacman');
 
-
+        model.hasNewDots = false;
         model.pacmanIndex = 490;
         model.ghosts = [
             new Ghost('blinky', 250, 348),
