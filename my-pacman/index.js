@@ -1,17 +1,36 @@
 "use strict"
 
-// 0 - pacdots
-// 1 - wall
-// 2 - ghost lair
-// 3 - powerpellets
-// 4 - empty
-
 window.onload = () => {
+    const modeBtns = document.querySelectorAll('[type=button]');
+
     view.renderGrid();
     document.addEventListener('keyup', controller.control);
     model.ghosts.forEach(ghost => model.moveGhost(ghost));
-}
 
+    // buttons
+    document.querySelector('#restartBtn').addEventListener('click', controller.restart);
+    modeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+
+            if (!btn.classList.contains('active')) {
+
+                if (btn.id === 'easyBtn') {
+                    controller.setMode(274, false, false);
+                } else if (btn.id === 'mediumBtn') {
+                    controller.setMode(548, true, false);
+                } else if (btn.id === 'hardBtn') {
+                    controller.setMode(822, false, true);
+                }
+            } else {
+                return false;
+            }
+
+            modeBtns.forEach(btn => btn.classList.remove('active'));
+            btn.classList.add('active');
+ 
+        });
+    });
+}
 class Ghost {
     constructor(className, speed, index) {
         this.className = className;
@@ -103,8 +122,12 @@ const model = {
         new Ghost('inky', 300, 351),
         new Ghost('clyde', 500, 379)
     ],
+    hasNewDots: false,
+    hardDots: false,
 
     movePacMan() {
+        this.checkMode();
+
         if (this.checkWalls()) {
             this.squares[this.pacmanIndex].classList.remove('pacman');
             this.pacmanIndex += controller.direction;     
@@ -124,9 +147,9 @@ const model = {
         this.squares[390].classList.remove('pacman');
         this.squares[365].classList.remove('pacman');
         
-        console.log(this.pacmanIndex);
         return (this.squares[nextStep].classList.contains('wall')) ? false 
-            : (nextStep === 321 || nextStep === 322) ? false
+            : (nextStep === 321 || nextStep === 322 
+                || nextStep === 320 || nextStep === 323) ? false
             : true
     },
 
@@ -189,12 +212,48 @@ const model = {
 
             let ghost = this.ghosts.find(ghost => 
                     ghost.currentIndex === this.pacmanIndex);
-            this.squares[this.pacmanIndex].classList.
-                remove('ghost', 'scared-ghost', ghost.className);
+            this.squares[this.pacmanIndex].classList
+                .remove('ghost', 'scared-ghost', ghost.className);
             ghost.currentIndex = ghost.index;
             ghost.isScared = false;
             controller.score += 100;
 
+        }
+    },
+
+    checkMode() {
+        if (controller.mediumMode && controller.score >= 274 && !this.hasNewDots) {
+            this.squares[320].classList.remove('wall');
+            this.squares[323].classList.remove('wall');
+            
+            view.layout.forEach((item, index) => {
+                return (item === 0) ? this.squares[index].classList.add('pac-dot') 
+                : (item === 3) ? this.squares[index].classList.add('power-pellet')
+                : 0;    
+            })
+            this.hasNewDots = true;
+        }
+
+        if (controller.hardMode && controller.score >= 274 && !this.hasNewDots) {
+            this.squares[320].classList.remove('wall');
+            this.squares[323].classList.remove('wall');
+
+            view.layout.forEach((item, index) => {
+                return (item === 0) ? this.squares[index].classList.add('pac-dot') 
+                : (item === 3) ? this.squares[index].classList.add('power-pellet')
+                : 0;    
+            })
+            this.hasNewDots = true;
+        } else if (controller.hardMode && controller.score >= 548 && !this.hardDots) {
+            this.squares[319].classList.remove('wall');
+            this.squares[324].classList.remove('wall');
+
+            view.layout.forEach((item, index) => {
+                return (item === 0) ? this.squares[index].classList.add('pac-dot') 
+                : (item === 3) ? this.squares[index].classList.add('power-pellet')
+                : 0;    
+            })
+            this.hardDots = true;
         }
     }
 
@@ -206,6 +265,9 @@ const controller = {
 
     score: 0,
     direction: 0,
+    scoreToWin: 274,
+    mediumMode: false,
+    hardMode: false,
 
     control(e) {
         switch (e.key) {
@@ -230,7 +292,7 @@ const controller = {
             document.removeEventListener('keyup', this.control);
             view.renderScore(` ${controller.score} - You LOSE`);
 
-        } else if (this.score >= 274) {
+        } else if (this.score >= this.scoreToWin) {
 
             model.ghosts.forEach(ghost => clearInterval(ghost.intervalID));
             document.removeEventListener('keyup', this.control);
@@ -238,6 +300,49 @@ const controller = {
 
         }
     },
+
+    setMode(winState, medium, hard) {
+        this.scoreToWin = winState;
+        this.mediumMode = medium;
+        this.hardMode = hard;
+        controller.restart();
+    },
+
+    restart() {
+        
+        controller.score = 0;
+        view.renderScore(` ${controller.score}`);
+
+        model.ghosts.forEach(ghost => {
+            model.squares[ghost.currentIndex]
+                .classList.remove(ghost.className, 'ghost', 'scared-ghost');
+            ghost.intervalID = null;
+            ghost.isScared = false;
+        })
+        model.squares[model.pacmanIndex].classList.remove('pacman');
+
+        model.hasNewDots = false;
+        model.hardDots = false;
+        model.pacmanIndex = 490;
+        model.ghosts = [
+            new Ghost('blinky', 250, 348),
+            new Ghost('pinky', 400, 376),
+            new Ghost('inky', 300, 351),
+            new Ghost('clyde', 500, 379)
+        ];
+
+        view.renderPacman();
+        model.ghosts.forEach(ghost => model.moveGhost(ghost));
+        document.addEventListener('keyup', controller.control);
+
+        view.layout.forEach((item, index) => {
+            return (item === 1) ? model.squares[index].classList.add('wall') 
+            : (item === 0) ? model.squares[index].classList.add('pac-dot') 
+            : (item === 3) ? model.squares[index].classList.add('power-pellet')
+            : 0;    
+        })
+    
+    }
 
 };
 

@@ -1,6 +1,6 @@
 html, body {
-    margin: 10;
-    padding: 10;
+    margin: 5px;
+    padding: 5px;
 }
 
 .grid {
@@ -23,7 +23,7 @@ html, body {
 }
 
 .wall {
-    background-color: blue;
+    background-color: slategrey;
 }
 
 .power-pellet {
@@ -32,7 +32,7 @@ html, body {
 }
 
 .pacman {
-    background-color: orange;
+    background-color: yellowgreen;
     border-radius: 7.5px;
     border: none;
 }
@@ -48,7 +48,7 @@ html, body {
 }
 
 .inky {
-    background-color: aqua;
+    background-color: blue;
     border: none;
 }
 
@@ -60,4 +60,36 @@ html, body {
 .scared-ghost {
     background-color: aquamarine;
     border: none;
+}
+
+/*------- buttons --------*/
+input,
+button {
+    cursor: pointer;
+}
+#restartBtn {
+    background: yellowgreen;
+    color: black;
+    border: none;
+    border-radius: 2px;
+    padding: .4em .8em;
+    /* position: absolute;
+    right: 0; */
+    position: absolute;
+    right: 10px;
+    transition: all linear .2s;
+}
+#restartBtn:hover {
+    background-color: black;
+    color: white;
+}
+#restartBtn:active {
+    background-color: yellowgreen;
+    color: black;
+}
+.active {
+    background-color: lightcyan;
+    border: 2px solid black;
+    font-weight: 600;
+    cursor: unset;
 }
