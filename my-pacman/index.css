@@ -89,4 +89,7 @@ button {
 }
 .active {
     background-color: lightcyan;
+    border: 2px solid black;
+    font-weight: 600;
+    cursor: unset;
 }

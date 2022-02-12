@@ -7,14 +7,51 @@
 // 4 - empty
 
 window.onload = () => {
+    const modeBtns = document.querySelectorAll('[type=button]');
+
     view.renderGrid();
     document.addEventListener('keyup', controller.control);
     model.ghosts.forEach(ghost => model.moveGhost(ghost));
 
     // buttons
     document.querySelector('#restartBtn').addEventListener('click', controller.restart);
-    document.querySelectorAll('[type=button]').forEach(btn => {
-        btn.addEventListener('click', controller.setMode);
+    modeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+
+            if (!btn.classList.contains('active')) {
+
+                if (btn.id === 'easyBtn') {
+
+                    controller.scoreToWin = 274;
+                    controller.mediumMode = false;
+                    controller.hardMode = false;
+
+                    controller.restart();
+                    console.log('easy');
+                } else if (btn.id === 'mediumBtn') {
+
+                    controller.scoreToWin = 548;
+                    controller.mediumMode = true;
+                    controller.hardMode = false;
+
+                    console.log('medium');
+                } else if (btn.id === 'hardBtn') {
+
+                    controller.scoreToWin = 822;
+                    controller.mediumMode = false;
+                    controller.hardMode = true;
+
+                    console.log('hard');
+                }
+
+            } else {
+                return false;
+            }
+
+            modeBtns.forEach(btn => btn.classList.remove('active'));
+            btn.classList.add('active');
+ 
+        });
     });
 }
 class Ghost {
@@ -108,8 +145,12 @@ const model = {
         new Ghost('inky', 300, 351),
         new Ghost('clyde', 500, 379)
     ],
+    hasNewDots: false,
 
     movePacMan() {
+        this.checkMode();
+
+
         if (this.checkWalls()) {
             this.squares[this.pacmanIndex].classList.remove('pacman');
             this.pacmanIndex += controller.direction;     
@@ -130,7 +171,8 @@ const model = {
         this.squares[365].classList.remove('pacman');
         
         return (this.squares[nextStep].classList.contains('wall')) ? false 
-            : (nextStep === 321 || nextStep === 322) ? false
+            : (nextStep === 321 || nextStep === 322 
+                || nextStep === 320 || nextStep === 323) ? false
             : true
     },
 
@@ -193,12 +235,25 @@ const model = {
 
             let ghost = this.ghosts.find(ghost => 
                     ghost.currentIndex === this.pacmanIndex);
-            this.squares[this.pacmanIndex].classList.
-                remove('ghost', 'scared-ghost', ghost.className);
+            this.squares[this.pacmanIndex].classList
+                .remove('ghost', 'scared-ghost', ghost.className);
             ghost.currentIndex = ghost.index;
             ghost.isScared = false;
             controller.score += 100;
 
+        }
+    },
+
+    checkMode() {
+        if (controller.mediumMode && controller.score >= 274 && !model.hasNewDots) {
+
+            view.layout.forEach((item, index) => {
+                return (item === 0) ? model.squares[index].classList.add('pac-dot') 
+                : (item === 3) ? model.squares[index].classList.add('power-pellet')
+                : 0;    
+            })
+    
+            model.hasNewDots = true;
         }
     }
 
@@ -210,6 +265,9 @@ const controller = {
 
     score: 0,
     direction: 0,
+    scoreToWin: 274,
+    mediumMode: false,
+    hardMode: false,
 
     control(e) {
         switch (e.key) {
@@ -234,13 +292,17 @@ const controller = {
             document.removeEventListener('keyup', this.control);
             view.renderScore(` ${controller.score} - You LOSE`);
 
-        } else if (this.score >= 274) {
+        } else if (this.score >= this.scoreToWin) {
 
             model.ghosts.forEach(ghost => clearInterval(ghost.intervalID));
             document.removeEventListener('keyup', this.control);
             view.renderScore(` ${controller.score} - You WIN`);
 
         }
+    },
+
+    setMode() {
+
     },
 
     restart() {
