@@ -22,25 +22,10 @@ window.onload = () => {
 
                 if (btn.id === 'easyBtn') {
                     controller.setMode(274, false, false);
-                    // controller.scoreToWin = 274;
-                    // controller.mediumMode = false;
-                    // controller.hardMode = false;
-                    // controller.restart();
-
                 } else if (btn.id === 'mediumBtn') {
                     controller.setMode(548, true, false);
-                    // controller.scoreToWin = 548;
-                    // controller.mediumMode = true;
-                    // controller.hardMode = false;
-                    // controller.restart();
-
                 } else if (btn.id === 'hardBtn') {
                     controller.setMode(822, false, true);
-                    // controller.scoreToWin = 822;
-                    // controller.mediumMode = false;
-                    // controller.hardMode = true;
-                    // controller.restart();
-
                 }
             } else {
                 return false;
@@ -144,6 +129,7 @@ const model = {
         new Ghost('clyde', 500, 379)
     ],
     hasNewDots: false,
+    hardDots: false,
 
     movePacMan() {
         this.checkMode();
@@ -243,15 +229,38 @@ const model = {
     },
 
     checkMode() {
-        if (controller.mediumMode && controller.score >= 274 && !model.hasNewDots) {
-
+        if (controller.mediumMode && controller.score >= 274 && !this.hasNewDots) {
+            this.squares[320].classList.remove('wall');
+            this.squares[323].classList.remove('wall');
+            
             view.layout.forEach((item, index) => {
-                return (item === 0) ? model.squares[index].classList.add('pac-dot') 
-                : (item === 3) ? model.squares[index].classList.add('power-pellet')
+                return (item === 0) ? this.squares[index].classList.add('pac-dot') 
+                : (item === 3) ? this.squares[index].classList.add('power-pellet')
                 : 0;    
             })
-    
-            model.hasNewDots = true;
+            this.hasNewDots = true;
+        }
+
+        if (controller.hardMode && controller.score >= 274 && !this.hasNewDots) {
+            this.squares[320].classList.remove('wall');
+            this.squares[323].classList.remove('wall');
+
+            view.layout.forEach((item, index) => {
+                return (item === 0) ? this.squares[index].classList.add('pac-dot') 
+                : (item === 3) ? this.squares[index].classList.add('power-pellet')
+                : 0;    
+            })
+            this.hasNewDots = true;
+        } else if (controller.hardMode && controller.score >= 548 && !this.hardDots) {
+            this.squares[319].classList.remove('wall');
+            this.squares[324].classList.remove('wall');
+
+            view.layout.forEach((item, index) => {
+                return (item === 0) ? this.squares[index].classList.add('pac-dot') 
+                : (item === 3) ? this.squares[index].classList.add('power-pellet')
+                : 0;    
+            })
+            this.hardDots = true;
         }
     }
 
@@ -319,6 +328,7 @@ const controller = {
         model.squares[model.pacmanIndex].classList.remove('pacman');
 
         model.hasNewDots = false;
+        model.hardDots = false;
         model.pacmanIndex = 490;
         model.ghosts = [
             new Ghost('blinky', 250, 348),
