@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+      document.getElementsByTagName('button')[0].addEventListener('click', () => {
+            
+         fetch('https://apis.scrimba.com/bored/api/activity')
+            .then(response => response.json())
+            .then(data => {
+               document.getElementsByTagName('h4')[0].textContent = `${data.activity}`;
+            })
+      })
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
