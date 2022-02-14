@@ -142,6 +142,17 @@ cat.makeNoise();
 console.log(cat.metaData)
 ```
 
+## Working With APIs
+
+1) GET first 5 blog posts from an API
+
+```js
+    fetch('https://apis.scrimba.com/jsonplaceholder/posts')
+        .then(response => response.json())
+        .then(data => console.log(data.slice(0, 5)))
+
+```
+
 
 
 
