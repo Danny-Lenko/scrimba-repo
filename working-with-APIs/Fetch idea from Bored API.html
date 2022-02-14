@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+      /**
+      Challenge: 
+
+      1. Fetch a random activity from the Bored API
+      url: https://apis.scrimba.com/bored/api/activity
+
+      2. Display the text of the activity in the browser
+      */
+
+      fetch('https://apis.scrimba.com/bored/api/activity')
+         .then(response => response.json())
+         .then(data => {
+            console.log(data);
+            document.body.innerHTML = `<p>${data.activity}</p>`
+               
+         })
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
