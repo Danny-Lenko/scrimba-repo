@@ -153,6 +153,23 @@ console.log(cat.metaData)
 
 ```
 
+2) POST new data through an API
+
+```js
+fetch("https://apis.scrimba.com/jsonplaceholder/todos", {
+    method: "POST",
+    body: JSON.stringify({
+        title: "Buy Milk",
+        completed: false
+    }),
+    headers: {
+        "Content-Type": "application/json"
+    }
+})
+    .then(res => res.json())
+    .then(data => console.log(data))
+```
+
 
 
 
