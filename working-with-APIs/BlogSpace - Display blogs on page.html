@@ -13,7 +13,7 @@
             
             postsArr.forEach(post => {
                   const article = document.createElement('article');
-                  article.innerHTML = `<h3>${post.title}</h3><p>${post.body}</p>`;
+                  article.innerHTML = `<h3>${post.title}</h3><p>${post.body}</p><hr />`;
                   document.querySelector('#posts').appendChild(article) ;
             })            
          })

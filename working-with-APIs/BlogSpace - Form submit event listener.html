@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+      let userInput;
+
+      document.querySelector('#btn').addEventListener('click', () => {
+         const titleEl = document.querySelector('#post-title');
+         const bodyEl = document.querySelector('#post-body');
+         if (titleEl.value && bodyEl.value) {
+            userInput = {title: titleEl.value, body: bodyEl.value};                
+         }
+         console.log(userInput);
+      })
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
