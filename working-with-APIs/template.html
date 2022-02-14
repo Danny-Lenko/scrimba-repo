@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+      fetch("https://apis.scrimba.com/jsonplaceholder/posts")
+         .then(res => res.json())
+         .then(data => {
+            let postsArr = data.slice(0, 5)
+            
+            postsArr.forEach(post => {
+                  const article = document.createElement('article');
+                  article.innerHTML = `<h3>${post.title}</h3><p>${post.body}</p>`;
+                  document.querySelector('#posts').appendChild(article) ;
+            })            
+         })
+   </script>
+</head>
+<body>
+   <body>
+      <div id="posts"></div>
+  </body>
+</body>
+</html>
