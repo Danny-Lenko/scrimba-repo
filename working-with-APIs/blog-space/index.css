@@ -1,0 +1,61 @@
+body {
+    font-family: 'Karla', sans-serif;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #FFEEEE;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #DDEFBB, #FFEEEE);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #DDEFBB, #FFEEEE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+nav {
+    background-color: beige;
+    padding: 5px 0;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 50vw;
+}
+
+nav > h3 {
+    margin: 0 auto;
+    width: 40vw;
+}
+
+#blog-list {
+    padding: 10px;
+}
+
+form {
+    padding: 60px 0 10px;
+    display: grid;
+    background-color: lightblue;
+    width: 50vw;
+}
+form > * {
+    width: 40vw;
+    margin: 0 auto;
+}
+
+input#post-title, textarea#post-body {
+    margin-bottom: 10px;
+}
+
+textarea#post-body {
+    height: 20vh;
+}
+
+button {
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#blog-list {
+    width: 50vw;
+}
