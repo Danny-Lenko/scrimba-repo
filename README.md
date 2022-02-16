@@ -170,6 +170,14 @@ fetch("https://apis.scrimba.com/jsonplaceholder/todos", {
     .then(data => console.log(data))
 ```
 
+3) Not triggering a click event when targeting a child element
+
+```scss
+   &__dropbtn--arrow,
+   &__dropbtn--content {
+      pointer-events: none;
+   }
+```
 
 
 
