@@ -1,19 +1,37 @@
 "use strict"
 
 const myDropdown = document.querySelector('#myDropdown');
+const dropBtn = document.querySelector('#dropBtn');
 const colorPicker = document.querySelector('#colorPicker');
+const getBtn = document.querySelector('#getBtn');
 
-let seedColor;
-let schemeMode;
+let seedColor = `000000`;
+let schemeMode = `monochrome`;
 
-document.querySelector('#dropBtn').addEventListener('click', () => {
+dropBtn.addEventListener('click', () => {
   myDropdown.classList.toggle('show');
 })
 
 colorPicker.addEventListener('input', () => {
-  seedColor = colorPicker.value;
-  // console.log(seedColor);
+  seedColor = colorPicker.value.slice(1);
 }, false);
+
+getBtn.addEventListener('click', () => {
+  fetch(`https://www.thecolorapi.com/scheme?hex=${seedColor}&mode=${schemeMode}&count=5`)
+    .then(res => res.json())
+    .then(data => {
+      
+      const mainList = document.querySelectorAll('.main__col');
+      const footList = document.querySelectorAll('.footer__col');
+
+      data.colors.forEach((color, index) => {
+        mainList[index].style.background = color.hex.value;
+        footList[index].textContent = color.hex.value;
+      })
+
+    })
+  ;
+})
 
 window.onclick = function(e) {
   
@@ -27,8 +45,7 @@ window.onclick = function(e) {
     aList.forEach(a => a.classList.remove('active'));
     document.querySelector('#schemeBtn').textContent = e.target.textContent;
     e.target.classList.add('active');
-    schemeMode = e.target.textContent;
-    // console.log(schemeMode);
+    schemeMode = e.target.textContent.toLowerCase();
   }
 
 }
