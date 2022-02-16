@@ -12,19 +12,25 @@ dropBtn.addEventListener('click', () => {
   myDropdown.classList.toggle('show');
 })
 
-document.querySelector('#schemeBtn').addEventListener('click', () => {
-  myDropdown.classList.toggle('show');
-})
-
 colorPicker.addEventListener('input', () => {
   seedColor = colorPicker.value.slice(1);
-  // console.log(seedColor);
 }, false);
 
 getBtn.addEventListener('click', () => {
   fetch(`https://www.thecolorapi.com/scheme?hex=${seedColor}&mode=${schemeMode}&count=5`)
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      
+      const mainList = document.querySelectorAll('.main__col');
+      const footList = document.querySelectorAll('.footer__col');
+
+      data.colors.forEach((color, index) => {
+        mainList[index].style.background = color.hex.value;
+        footList[index].textContent = color.hex.value;
+      })
+
+    })
+  ;
 })
 
 window.onclick = function(e) {
@@ -40,7 +46,6 @@ window.onclick = function(e) {
     document.querySelector('#schemeBtn').textContent = e.target.textContent;
     e.target.classList.add('active');
     schemeMode = e.target.textContent.toLowerCase();
-    // console.log(schemeMode);
   }
 
 }
