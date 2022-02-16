@@ -13,6 +13,10 @@
           justify-content: space-evenly;
 }
 
+.header .active > .fa-check {
+  visibility: visible;
+}
+
 .header__pick-color {
   width: 61px;
   height: 43px;
@@ -79,10 +83,6 @@
   position: absolute;
   right: 13px;
   visibility: hidden;
-}
-
-.header__dropdown-content a .active {
-  visibility: visible;
 }
 
 .header__dropdown-content a:hover {

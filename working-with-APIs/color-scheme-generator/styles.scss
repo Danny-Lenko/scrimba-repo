@@ -6,6 +6,10 @@
    align-items: center;
    justify-content: space-evenly;
 
+   .active > .fa-check {
+      visibility: visible;
+   }
+
    &__pick-color {
       width: 61px;
       height: 43px;
@@ -63,9 +67,6 @@
          position: absolute;
          right: 13px;
          visibility: hidden;
-      }
-      .active {
-         visibility: visible;
       }
    }
 
