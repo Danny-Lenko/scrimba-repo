@@ -1,0 +1,19 @@
+@import "styles.css";
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 1vh auto 0;
+    padding: 0;
+    background-color: #1c1c1c;
+    width: 550px;
+}
+
+.show {display:block;}
+
+
+
+
+

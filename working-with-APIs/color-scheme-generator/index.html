@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Scheme Generator</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/d0d2d8a261.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header id="headerEl" class="header">
+        <input type="color" class="header__pick-color">
+        <div class="header__dropdown">
+            <!-- <button id="dropBtn" class="header__dropbtn">Dropdown</button> -->
+            <div id="dropBtn" class="header__dropbtn">
+                <div class="header__dropbtn--content">Monochrome</div>
+                <div class="header__dropbtn--arrow"><i class="fa-solid fa-chevron-down"></i></div>
+            </div>
+
+            <div id="myDropdown" class="header__dropdown-content">
+              <a href="#">Monochrome</a>
+              <a href="#">Monochrome-dark</a>
+              <a href="#">Monochrome-light</a>
+              <a href="#">Analogic</a>
+              <a href="#">Complement</a>
+              <a href="#">Analogic-complement</a>
+              <a href="#">Triad</a>
+            </div>
+        </div>
+        <input type="button" id="getBtn" class="header__getbtn" value="Get color scheme">
+    </header>
+    <main id="mainEl" class="main">
+        <div id="col1" class="main__col"></div>
+        <div id="col2" class="main__col"></div>
+        <div id="col3" class="main__col"></div>
+        <div id="col4" class="main__col"></div>
+        <div id="col5" class="main__col"></div>
+    </main>
+    <footer id="footerEl" class="footer">
+        <div id="key1" class="footer__col">#F55A5A</div>
+        <div id="key2" class="footer__col">#2B283A</div>
+        <div id="key3" class="footer__col">#FBF3AB</div>
+        <div id="key4" class="footer__col">#AAD1B6</div>
+        <div id="key5" class="footer__col">#A626D3</div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
