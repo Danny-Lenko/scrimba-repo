@@ -33,6 +33,18 @@ getBtn.addEventListener('click', () => {
   ;
 })
 
+function copy(input) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(input).then(() => {
+      console.log('Copied to clipboard successfully.');
+    }, (err) => {
+      console.log('Failed to copy the text to clipboard.', err);
+    });
+  } else if (window.clipboardData) {
+    window.clipboardData.setData("Text", input);
+  }
+}
+
 window.onclick = function(e) {
   
   if (e.target.id != 'dropBtn') {
@@ -48,5 +60,15 @@ window.onclick = function(e) {
     schemeMode = e.target.textContent.toLowerCase();
   }
 
+  if (e.target.classList.contains('main__col')) {
+    copy(e.target.dataset.bcg);
+  }
+
+  if (e.target.classList.contains('footer__col')) {
+    copy(e.target.textContent);
+  }
+
 }
+
+
 
