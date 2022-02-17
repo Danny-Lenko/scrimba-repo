@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+      const chooseTheWinner = (card1, card2) => {
+         
+         const exchangeValue = cardValue => (cardValue === 'JACK') ? 11 
+            : (cardValue === 'QUEEN') ? 12
+            : (cardValue === 'KING') ? 13
+            : (cardValue === 'ACE') ? 14
+            : cardValue;
+         
+         const card1Value = exchangeValue(card1.value); 
+         const card2Value = exchangeValue(card2.value);
+         
+         const theWinner = (card1Value > card2Value) ? `Computer wins ${card1.value} : ${card2.value}`
+            : (card1Value < card2Value) ? `Player wins ${card1.value} : ${card2.value}`
+            : "It's a tie!";
+         
+         console.log(theWinner);
+      }
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
