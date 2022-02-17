@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+      const people = [
+         { name: "Jack", hasPet: true },
+         { name: "Jill", hasPet: false },
+         { name: "Alice", hasPet: true },
+         { name: "Bob", hasPet: false },
+      ]
+
+      const checkPets = (person) => (person.hasPet) ? true : false;
+
+      function filterArray(array, callback) {
+         const resultingArray = []
+         array.forEach(person => {
+            if(callback(person)) {
+                  resultingArray.push(person)
+            }
+         })
+         return resultingArray;
+      }
+      console.log(filterArray(people, checkPets));
+   </script>
+</head>
+<body>
+   
+</body>
+</html>

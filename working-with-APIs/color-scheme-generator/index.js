@@ -62,10 +62,12 @@ window.onclick = function(e) {
 
   if (e.target.classList.contains('main__col')) {
     copy(e.target.dataset.bcg);
+    alert(`copied to the clipboard - ${e.target.dataset.bcg}`)
   }
 
   if (e.target.classList.contains('footer__col')) {
     copy(e.target.textContent);
+    alert(`copied to the clipboard - ${e.target.textContent}`)
   }
 
 }
