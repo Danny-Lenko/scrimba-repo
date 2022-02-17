@@ -13,8 +13,6 @@
          { name: "Bob", hasPet: false },
       ]
 
-      const checkPets = (person) => (person.hasPet) ? true : false;
-
       function filterArray(array, callback) {
          const resultingArray = []
          array.forEach(person => {
@@ -24,7 +22,8 @@
          })
          return resultingArray;
       }
-      console.log(filterArray(people, checkPets));
+      const peopleWithPets = filterArray(people, person => person.hasPet);
+      console.log(peopleWithPets);
    </script>
 </head>
 <body>
