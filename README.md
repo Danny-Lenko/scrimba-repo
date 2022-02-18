@@ -182,10 +182,12 @@ fetch("https://apis.scrimba.com/jsonplaceholder/todos", {
 4) !! ".disabled" class for buttons
 
 ```css
-.disabled{
+.disabled {
     pointer-events: none;
     background-color: #cccccc;
     color: #666666;
+    cursor: default;
+    /* cursor: not-allowed; */
 }
 ```
 
