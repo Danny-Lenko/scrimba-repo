@@ -191,6 +191,15 @@ fetch("https://apis.scrimba.com/jsonplaceholder/todos", {
 }
 ```
 
+5) remove <a> default styling
+
+```css
+   a, a:hover, a:focus, a:active {
+      text-decoration: none;
+      color: inherit;
+  }
+```
+
 
 
 

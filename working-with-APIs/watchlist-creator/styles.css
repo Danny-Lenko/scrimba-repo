@@ -4,6 +4,11 @@
   background: url(./bcg-img.png) 0 0/cover no-repeat;
 }
 
+.header a, .header a:hover, .header a:focus, .header a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
 .header__hero {
   width: 100%;
   height: 100%;
@@ -82,9 +87,50 @@
 .main {
   background-color: #121212;
   min-height: calc(100vh - 208px - 3vh);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main a, .main a:hover, .main a:focus, .main a:active {
+  text-decoration: none;
+  color: inherit;
 }
 
 .main__article {
   display: none;
+}
+
+.main__screensaver {
+  text-align: center;
+}
+
+.main__screen-icon {
+  font-size: 60px;
+  color: #2E2E2F;
+}
+
+.main__screen-text {
+  margin-top: 0;
+}
+
+.main__screensaver--empty, .main__screen-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2E2E2F;
+}
+
+.main__screesaver--add {
+  cursor: pointer;
+}
+
+.main .fa-circle-plus {
+  margin-right: 5px;
 }
 /*# sourceMappingURL=styles.css.map */
