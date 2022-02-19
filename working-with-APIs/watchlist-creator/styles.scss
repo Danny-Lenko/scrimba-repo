@@ -83,6 +83,7 @@
    hr {
       margin: 20px 0;
    }
+   .dim {border-color: #2C2C2C;}
 
    a, a:hover, a:focus, a:active {
       text-decoration: none;
@@ -90,7 +91,7 @@
   }
 
    &__article {
-      // display: none;
+      display: none;
       width: 100%;
       padding: 0 44px;
       margin: 0;
@@ -148,6 +149,7 @@
 
    &__screensaver {
       text-align: center;
+      display: none;
    }
 
    &__screen-icon {
