@@ -16,11 +16,11 @@ document.querySelector('.header__btn').addEventListener('click', async () => {
     console.log(data['Response']);
     console.log(data)
 
-    if (data['Response'] === 'False') {
+    if (data['Response'] === 'False' || data['Poster'] ==='N/A') {
       showRejection();
     } else {
-      moviesFound.unshift(data);
-      renderMovies(moviesFound);
+        moviesFound.unshift(data);
+        renderMovies(moviesFound);  
     }    
     
   }
