@@ -207,4 +207,10 @@
 .main .fa-circle-plus {
   margin-right: 5px;
 }
+
+.main__screensaver--unable {
+  padding: 0 130px;
+  font-size: 18px;
+  color: #787878;
+}
 /*# sourceMappingURL=styles.css.map */
