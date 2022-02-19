@@ -8,23 +8,30 @@ document.querySelector('.header__btn').addEventListener('click', async () => {
   let userRequest = document.querySelector('.header__input').value;
   if (userRequest) {
     document.querySelector('.header__input').value = '';
-    userRequest = userRequest.toLowerCase().trim().match(/[a-z0-9]+/g).join("+")
+    userRequest = userRequest.toLowerCase().trim().match(/[a-z0-9-:]+/g).join("+")
     
     const res = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=d6310ff9&t=${userRequest}`);
-
     const data = await res.json();
-    console.log(data['Response']);
-    console.log(data)
 
     if (data['Response'] === 'False' || data['Poster'] ==='N/A') {
       showRejection();
     } else {
         moviesFound.unshift(data);
-        renderMovies(moviesFound);  
-    }    
+        renderMovies(moviesFound);
+    }
     
+    // set up "add to watch list" buttons' functionality
+    document.querySelectorAll('.main__addBtn').forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        console.log('hello');
+        moviesWatched.unshift(moviesFound[index]);
+        console.log(moviesWatched);
+      });
+    })
   }
 })
+
+
 
 const renderMovies = (movies) => {
   let content = movies.map(movie => `
@@ -55,6 +62,5 @@ const showRejection = () => {
   <div class="main__screensaver show">
     <p class="main__screensaver--unable">Unable to find what you’re looking for. Please try another search.</p>
 </div>
-
-  `;
+  `
 }

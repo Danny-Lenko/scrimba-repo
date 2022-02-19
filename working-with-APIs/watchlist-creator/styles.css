@@ -206,6 +206,7 @@
 
 .main .fa-circle-plus {
   margin-right: 5px;
+  pointer-events: none;
 }
 
 .main__screensaver--unable {
