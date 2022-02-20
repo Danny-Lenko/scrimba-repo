@@ -1,8 +1,12 @@
 "use strict"
 
 const moviesFound = [];
-const moviesWatched = [];
+// const moviesWatched = [];
 const mainEl = document.querySelector('#main');
+
+let moviesWatched = JSON.parse(localStorage.getItem('moviesWatched'));
+if (!moviesWatched) moviesWatched = [];
+
 
 document.querySelector('.header__btn').addEventListener('click', async () => {
   let userRequest = document.querySelector('.header__input').value;
@@ -25,9 +29,11 @@ document.querySelector('.header__btn').addEventListener('click', async () => {
       btn.addEventListener('click', () => {
         console.log('hello');
         moviesWatched.unshift(moviesFound[index]);
+        localStorage.setItem('moviesWatched', JSON.stringify(moviesWatched));
         console.log(moviesWatched);
       });
     })
+
   }
 })
 

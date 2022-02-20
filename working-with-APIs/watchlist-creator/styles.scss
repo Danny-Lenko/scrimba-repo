@@ -82,6 +82,7 @@
 
    hr {
       margin: 20px 0;
+      border-width: .1px;
    }
    .dim {border-color: #2C2C2C;}
 
@@ -137,7 +138,8 @@
       margin-right: 20px;
    }
 
-   &__addBtn {
+   &__addBtn,
+   &__delBtn {
       margin-left: 20px;
       cursor: pointer;
    }
@@ -172,7 +174,8 @@
       cursor: pointer;
    }
 
-   .fa-circle-plus {
+   .fa-circle-plus,
+   .fa-circle-minus {
       margin-right: 5px;
       pointer-events: none;
    }
