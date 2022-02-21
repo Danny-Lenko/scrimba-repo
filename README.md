@@ -200,6 +200,28 @@ fetch("https://apis.scrimba.com/jsonplaceholder/todos", {
   }
 ```
 
+6) full screen background image
+
+```css
+    html { 
+        background: url(images/bg.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+```
+
+7) making text more readable
+
+```css
+p {
+    /* text-shadow: 1px 1px 2px #474747; */
+    text-shadow: 0px 0px 20px #aaaaaa;
+}
+
+```
+
 
 
 
