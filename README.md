@@ -237,6 +237,13 @@ body {
 }
 ```
 
+2) turn HTMLCollection into an array
+
+```js
+    let myPhotoImgs = Array.from(document.getElementsByClassName("my-photo"))
+    myPhotoImgs.forEach(photoImg => 
+```
+
 
 
 
