@@ -219,7 +219,22 @@ p {
     /* text-shadow: 1px 1px 2px #474747; */
     text-shadow: 0px 0px 20px #aaaaaa;
 }
+```
 
+## Building Apps with Flexbox and Grid
+
+1) taking a small app to the center
+
+```css
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: red;
+    border: 5px solid white; */
+}
 ```
 
 
