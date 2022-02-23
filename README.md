@@ -263,6 +263,17 @@ getBooks().then(books => {
 })
 ```
 
+4) similar items display with grid
+
+```css
+.portfolio {
+    padding: 1em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1em;
+} 
+```
+
 
 
 
