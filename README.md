@@ -244,6 +244,36 @@ body {
     myPhotoImgs.forEach(photoImg => 
 ```
 
+3) asign each data piece a unique id while fetching
+
+```js
+async function getBooks() {
+    let response = await fetch('books.json')
+    let books = await response.json()
+    let n = 1
+    return books.map(book => {
+        book.id = n
+        n += 1
+        return book
+    })
+}
+
+getBooks().then(books => {
+    console.log(books)
+})
+```
+
+4) similar items display with grid
+
+```css
+.portfolio {
+    padding: 1em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1em;
+} 
+```
+
 
 
 
