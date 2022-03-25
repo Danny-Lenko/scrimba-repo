@@ -9,6 +9,8 @@ html, body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     grid-gap: 1em;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .my-book {

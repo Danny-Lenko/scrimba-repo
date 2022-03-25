@@ -4,11 +4,17 @@ html, body {
     background-color: lightgreen;
 }
 
+/* body {width: 100%;}  */
+
 .my-pokedex {
+    display: flex;
+    flex-wrap: wrap;
     padding: 0.5rem;
+    justify-content: space-evenly;
 }
 
 .a-pokemon {
+    width: 400px;
     margin: 0.3rem;
     display: grid;
     grid-template-columns: repeat(12, calc(100% / 12));

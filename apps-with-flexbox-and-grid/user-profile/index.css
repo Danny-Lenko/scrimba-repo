@@ -2,6 +2,9 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: #7fc8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 * {
@@ -9,10 +12,12 @@ html, body {
 }
 
 .user-profile {
+    border: 3px solid gray;
+    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
+    height: min-content;
 }
 
 .user-profile-header {

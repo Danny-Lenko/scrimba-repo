@@ -1,15 +1,3 @@
-/* 
-    Library (Challenge)
-
-    Write a displayLibrary(books) function
-        - Add error catching
-
-    Use CSS Grid instead of Flexbox to style 
-        the library container
-        - Use a gap of 1rem
-        - Display 3 books per row
-*/
-
 async function getBooks() {
     let response = await fetch('books.json')
     let books = await response.json()
