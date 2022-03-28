@@ -170,4 +170,23 @@ header {
    margin-right: 10px;
 }
 
+/* ======================================== about & interests components */
+
+.about,
+.interests {
+   padding: 0 35px 20px;
+}
+
+.about__h2,
+.interests__h2 {
+   font-size: 1rem;
+   color: #f5f5f5;
+}
+
+.about__text,
+.interests__text {
+   font-size: calc(10.24rem / 16);
+   color: #dcdcdc;
+}
+
 
