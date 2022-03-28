@@ -2,7 +2,7 @@ import React from "react";
 import Info from "./components/Info"
 import About from "./components/About"
 import Interests from "./components/Interests"
-// import Footer from "./components/Footer"
+import Footer from "./components/Footer"
 
 export default function App() {
    return (
@@ -10,7 +10,7 @@ export default function App() {
          <Info />
          <About />
          <Interests />
-         {/* <Footer /> */}
+         <Footer />
       </div>
    )
 }
