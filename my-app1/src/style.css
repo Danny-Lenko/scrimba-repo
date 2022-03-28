@@ -75,3 +75,99 @@ select {
 
 /* ====================================================== end of reset */
 
+body {
+   margin-top: 10px;
+
+   font-family: 'Inter', sans-serif;
+   color: #ffffff;
+   background: #23252C;
+   display: flex;
+   justify-content: center;
+}
+
+.container {
+   border-radius: 10px 10px 0 0;
+
+   max-width: 317px;
+   background: #1A1B21;
+}
+
+header {
+   text-align: center;   
+}
+
+.header__img {
+   border-radius: 10px 10px 0px 0px;
+}
+
+.header__content {
+   padding: 20px 35px 30px;
+}
+
+.header__h1 {
+   font-size: calc(25rem / 16);
+   font-weight: 700;
+   line-height: 1.3;
+}
+
+.header__h3 {
+   color: #F3BF99;
+   font-size: calc(12.8rem / 16);
+   font-weight: 400;
+   line-height: 1.3;
+   margin-bottom: .8em;
+}
+
+.header__site {
+   color: #f5f5f5;
+   font-size: calc(10.24rem / 16);
+   font-weight: 400;
+   margin-bottom: calc(.8em + .5rem);
+}
+
+.header__site:hover {
+   cursor: pointer;
+   color: #F3BF99;
+   text-decoration: underline;
+}
+
+.header__btns-container {
+   display: flex;
+   justify-content: space-between;
+}
+
+.header__content a {
+   text-decoration: none;
+   font-size: calc(14rem / 16);
+   line-height: 1;
+   font-weight: 500;
+   display: inline-block;
+   width: 115px;
+   border-radius: 6px;
+   padding-block: .6rem;
+}
+
+.header__e-mail {
+   color: #374151;
+   background: #fff;
+   transition: all .5s ease-out;
+}
+.header__e-mail:hover {
+   transform: scale(1.07);
+}
+
+.header__linked {
+   color: #fff;
+   background: #5093E2;
+   transition: all .5s ease-out;
+}
+.header__linked:hover {
+   transform: scale(1.07);
+}
+
+.fa-envelope,
+.fa-linkedin {
+   margin-right: 10px;
+}
+
+
