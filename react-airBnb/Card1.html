@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+import React from "react"
+
+export default function Card(props) {
+    return (
+        <div className="card">
+            <img src={`../images/${props.img}`} className="card--image" />
+            <div className="card--stats">
+                <img src="../images/star.png" className="card--star" />
+                <span>{props.rating}</span>
+                <span className="gray">({props.reviewCount}) • </span>
+                <span className="gray">{props.country}</span>
+            </div>
+            <p>{props.title}</p>
+            <p><span className="bold">From ${props.price}</span> / person</p>
+        </div>
+    )
+}
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
