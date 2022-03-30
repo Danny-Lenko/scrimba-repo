@@ -100,3 +100,18 @@ header {
   font-size: 1rem;
   margin-right: 5px;
 }
+
+/* ================================================== Cards component */
+
+.card {
+  display: flex;
+  padding: 0 40px;
+  column-gap: 19px;
+}
+
+.card__img {
+  width: 125px;
+  height: 168px;
+  object-fit: cover;
+  border-radius: 7px;
+}
