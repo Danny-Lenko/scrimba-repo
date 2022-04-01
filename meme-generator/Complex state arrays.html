@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+function App() {
+
+    const [thingsArr, setThingsArr] = React.useState(["Thing 1", "Thing 2"]);
+    const thingsElements = thingsArr.map(thing => <p key={thing}>{thing}</p>);
+    
+    function addItem() {
+        setThingsArr(prevArr => [...prevArr, `Thing ${prevArr.length + 1}`]);   
+    }
+    
+    return (
+        <div>
+            <button onClick={addItem}>Add Item</button>
+            {thingsElements}
+        </div>
+    )
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+   </script>
+</head>
+<body>
+   
+</body>
+</html>

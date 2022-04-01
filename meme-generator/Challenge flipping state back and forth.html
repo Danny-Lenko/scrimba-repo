@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+import React from "react"
+
+export default function App() {
+    const [isGoingOut, setIsGoingOut] = React.useState(true)
+    /**
+     * Challenge: 
+     * - Initialize state for `isGoingOut` as a boolean
+     * - Make it so clicking the div.state--value flips that
+     *   boolean value (true -> false, false -> true)
+     * - Display "Yes" if `isGoingOut` is `true`, "No" otherwise
+     */
+    function changeMind() {
+        setIsGoingOut(prevState => !prevState)
+    }
+    
+    return (
+        <div className="state">
+            <h1 className="state--title">Do I feel like going out tonight?</h1>
+            <div onClick={changeMind} className="state--value">
+                <h1>{isGoingOut ? "Yes" : "No"}</h1>
+            </div>
+        </div>
+    )
+}
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
