@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+import React from "react"
+
+export default function App() {
+    /**
+     * Challenge: 
+     * Add functionality to the minus button
+     */
+    const [count, setCount] = React.useState(0)
+    
+    function add() {
+        setCount(count + 1)
+    }
+    
+    function subtract() {
+        setCount(count - 1)
+    }
+    
+    return (
+        <div className="counter">
+            <button className="counter--minus" onClick={subtract}>–</button>
+            <div className="counter--count">
+                <h1>{count}</h1>
+            </div>
+            <button className="counter--plus" onClick={add}>+</button>
+        </div>
+    )
+}
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
