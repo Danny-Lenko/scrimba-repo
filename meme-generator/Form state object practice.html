@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+import React from "react"
+
+export default function Form() {
+    const [formData, setFormData] = React.useState(
+        {firstName: "", lastName: "", email: ""}
+    )
+    
+    /**
+     * Challenge: add an email field/state to the form
+     */
+    
+    console.log(formData)
+    
+    function handleChange(event) {
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
+    
+    return (
+        <form>
+            <input
+                type="text"
+                placeholder="First Name"
+                onChange={handleChange}
+                name="firstName"
+            />
+            <input
+                type="text"
+                placeholder="Last Name"
+                onChange={handleChange}
+                name="lastName"
+            />
+            <input
+                type="email"
+                placeholder="Email"
+                onChange={handleChange}
+                name="email"
+            />
+        </form>
+    )
+}
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
