@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gold Code</title>
+   <script>
+import React from "react"
+
+export default function Box(props) {
+    /**
+     * Challenge: Create state controlling whether
+     * this box is "on" or "off". Use the incoming
+     * `props.on` to determine the initial state.
+     * 
+     * Create an event listener so when the box is clicked,
+     * it toggles from "on" to "off".
+     * 
+     * Goal: clicking each box should toggle it on and off.
+     */
+    
+    const [on, setOn] = React.useState(props.on);
+    
+    function handleClicks() {
+        setOn(prevState => !prevState)
+    }
+    
+    const styles = {
+        backgroundColor: on ? "#222222" : "transparent"
+    }
+    
+    return (
+        <div onClick={handleClicks} style={styles} className="box"></div>
+    )
+}
+   </script>
+</head>
+<body>
+   
+</body>
+</html>
